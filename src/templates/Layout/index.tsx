@@ -3,7 +3,8 @@
 import React, { ReactNode } from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
-import Modal from '@/components/modal/Modal'
+import Modal from '@/components/modals/Modal'
+import RegisterModal from '@/components/modals/RegisterModal'
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
@@ -12,10 +13,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
       flex
       flex-col
     '>
-      <Modal isOpen
-        title='Teste'
-        actionLabel='Enviar'
-      />
+      <RegisterModal />
       <Navbar />
       <div className='mt-20'>
         {children}
