@@ -1,4 +1,4 @@
-import { Footer, Navbar } from '@/templates/Layout'
+import Layout from '@/templates/Layout'
 import '../styles/globals.css'
 import { Oswald } from 'next/font/google'
 
@@ -20,9 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        <Navbar />
-        {children}
-        <Footer />
+        <Layout>
+          {children}
+        </Layout>
       </body>
     </html>
   )

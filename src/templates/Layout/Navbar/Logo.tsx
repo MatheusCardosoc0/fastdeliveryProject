@@ -12,13 +12,15 @@ const Logo = () => {
       <Image
         alt='Logotipo'
         src={"/images/Logo.png"}
-        height={100}
-        width={100}
+        className='w-[80px]'
+        width={1000}
+        height={1000}
       />
       <h1
         className="
-          text-2xl
-          md:text-3xl
+          hidden
+          md:block
+          text-3xl
           underline
           font-black
           text-[#000000]

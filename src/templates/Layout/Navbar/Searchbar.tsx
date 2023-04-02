@@ -10,24 +10,35 @@ const Searchbar = () => {
   return (
     <div
       className='
+        p-1
+        bg-gradient-to-tr from-[#f19d0b] to-[#fd137d]
+        rounded-xl
+        w-full
+        max-w-[50%]
+      '>
+      <div
+        className='
         flex
         items-center
         bg-[#ffffff]
         rounded-xl
         overflow-hidden
+        text-base
         px-3
         py-2
-        group
-        hover:drop-shadow-[1px_1px_1px_black]
+        md:text-xl
       '>
-      <BiSearch />
-      <input
-        className='
+        <BiSearch />
+        <input
+          className='
           bg-transparent
           outline-none
+          px-1
+          w-full
         '
-        placeholder='Buscar...'
-      />
+          placeholder='Buscar...'
+        />
+      </div>
     </div>
   )
 }

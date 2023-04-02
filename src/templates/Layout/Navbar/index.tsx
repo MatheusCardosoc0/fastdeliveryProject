@@ -12,7 +12,7 @@ const Navbar = () => {
 
 
   return (
-    <nav className='fixed w-full bg-[#f7f7f7] z-10 shadow-sm'>
+    <nav className='fixed top-0 w-full bg-[#f7f7f7] z-10 shadow-sm'>
       <div
         className='
           py-4
