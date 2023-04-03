@@ -1,6 +1,6 @@
 'use client'
 
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, HTMLInputTypeAttribute } from 'react'
 import {
   FieldErrors,
   FieldValues,
@@ -10,9 +10,9 @@ import { BiDollar } from 'react-icons/bi'
 
 interface InputProps {
   id: string
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void
   label: string
-  type?: 'password' | 'text' | 'number' | 'search'
+  type?: HTMLInputTypeAttribute
   disabled?: boolean
   formatPrice?: boolean
   required?: boolean
@@ -49,8 +49,8 @@ const Input: React.FC<InputProps> = ({
         id={id}
         disabled={disabled}
         required={required}
-        onChange={onChange}
         type={type}
+        {...register(id , {required})}
         className={`
         px-2
         pb-2

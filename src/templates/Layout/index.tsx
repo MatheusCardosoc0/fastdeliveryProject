@@ -5,6 +5,8 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 import Modal from '@/components/modals/Modal'
 import RegisterModal from '@/components/modals/RegisterModal'
+import ToasterProvider from '@/providers/ToasterProvider'
+import { Toaster } from 'react-hot-toast'
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
@@ -13,6 +15,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
       flex
       flex-col
     '>
+      <Toaster />
       <RegisterModal />
       <Navbar />
       <div className='mt-20'>
