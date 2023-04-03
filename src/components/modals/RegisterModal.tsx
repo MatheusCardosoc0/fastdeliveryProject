@@ -7,6 +7,8 @@ import { useCallback, useState } from 'react'
 import useRegisterModal from '@/hooks/useRegisterModal'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import Modal from './Modal'
+import Heading from '../containers/Heading'
+import Input from '../globalElements/Input'
 
 const RegisterModal = () => {
 
@@ -43,8 +45,32 @@ const RegisterModal = () => {
   }
 
   const bodyContent = (
-    <div className='fex flex-col gap-4'>
-      aa
+    <div className='flex flex-col gap-4'>
+      <Heading
+        title='Bem vindo a fast delivery'
+        subtitle='Crie sua conta!'
+      />
+      <Input
+        label='Nome'
+        id='name'
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required />
+      <Input
+        label='Email'
+        id='name'
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required />
+      <Input
+        label='Senha'
+        id='name'
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required />
     </div>
   )
 
