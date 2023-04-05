@@ -3,10 +3,10 @@
 import React, { ReactNode } from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
-import Modal from '@/components/modals/Modal'
-import RegisterModal from '@/components/modals/RegisterModal'
-import ToasterProvider from '@/providers/ToasterProvider'
+import Modal from '../../components/modals/Modal'
+import ToasterProvider from '../../providers/ToasterProvider'
 import { Toaster } from 'react-hot-toast'
+import RegisterModal from '../../components/modals/RegisterModal'
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (

@@ -1,9 +1,9 @@
 'use client'
 
-import Container from '@/components/containers/Container'
+import Container from '../../../components/containers/Container'
 import React, { useState } from 'react'
 import Logo from './Logo'
-import { Input } from '@/components'
+import { Input } from '../../../components'
 import Searchbar from './Searchbar'
 import Avatar from './Avatar'
 

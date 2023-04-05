@@ -1,5 +1,5 @@
-import Layout from '@/templates/Layout'
-import '../styles/globals.css'
+import Layout from './templates/Layout'
+import './styles/globals.css'
 import { Oswald } from 'next/font/google'
 
 export const metadata = {
