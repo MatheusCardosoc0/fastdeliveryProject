@@ -8,8 +8,15 @@ import ToasterProvider from '../../providers/ToasterProvider'
 import { Toaster } from 'react-hot-toast'
 import RegisterModal from '../../components/modals/RegisterModal'
 import LoginModal from '../../components/modals/LoginModal'
+import { User } from '@prisma/client'
+import { SafeUser } from '../../types'
 
-const Layout = ({ children }: { children: ReactNode }) => {
+interface LayoutProps{
+  children: ReactNode
+  currentUser: SafeUser | null
+}
+
+const Layout = ({children, currentUser}: LayoutProps) => {
   return (
     <div className='
       w-full
@@ -19,8 +26,8 @@ const Layout = ({ children }: { children: ReactNode }) => {
       <Toaster />
       <RegisterModal />
       <LoginModal />
-      <Navbar />
-      <div className='mt-20'>
+      <Navbar currentUser={currentUser} />
+      <div className='mt-28'>
         {children}
       </div>
       <Footer />

@@ -6,10 +6,18 @@ import Logo from './Logo'
 import { Input } from '../../../components'
 import Searchbar from './Searchbar'
 import Avatar from './Avatar'
+import { User } from '@prisma/client'
+import { SafeUser } from '../../../types'
 
-const Navbar = () => {
+interface navBarProps{
+  currentUser: SafeUser | null
+}
 
+const Navbar: React.FC<navBarProps> = ({
+  currentUser
+}) => {
 
+  console.log({currentUser})
 
   return (
     <nav className='fixed top-0 w-full bg-[#f7f7f7] z-10 shadow-sm'>
@@ -32,7 +40,7 @@ const Navbar = () => {
 
             <Logo />
             <Searchbar />
-            <Avatar />
+            <Avatar currentUser={currentUser} />
           </div>
         </Container>
       </div>

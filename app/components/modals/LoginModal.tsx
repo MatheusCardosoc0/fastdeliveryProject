@@ -46,7 +46,7 @@ const LoginModal = () => {
 
       if(callback?.ok){
         toast.success("Login concluido")
-        router.refresh()
+        window.location.reload()
         LoginModal.onClose()
       }
 

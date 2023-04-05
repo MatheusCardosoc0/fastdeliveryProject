@@ -25,6 +25,8 @@ model User {
   accounts Account[]
   product  Product[]
   order    Order[]
+
+  @@map("user")
 }
 
 model Account {
