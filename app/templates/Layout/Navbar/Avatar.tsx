@@ -4,12 +4,14 @@ import Image from 'next/image'
 import React, { useCallback, useState } from 'react'
 import unknownUser from '../../../assets/unknown.png'
 import useRegisterModal from '../../../hooks/useRegisterModal'
+import useLoginModal from '../../../hooks/useLoginModal'
 
 const Avatar = () => {
 
   const [isVisibleOptions, setIsVisibleOptions] = useState(false)
   const [authenticated, setAuthenticated] = useState(false)
   const registerModal = useRegisterModal()
+  const loginModal = useLoginModal()
 
   const ToggleOptions = useCallback(() => {
     setIsVisibleOptions(prev => !prev)
@@ -68,7 +70,7 @@ const Avatar = () => {
             p-4
           '>
           <li className='cursor cursor-pointer'
-
+            onClick={() => loginModal.onOpen()}
           >Login</li>
           <li className='border-t-2 pt-4 cursor-pointer'
             onClick={() => registerModal.onOpen()}

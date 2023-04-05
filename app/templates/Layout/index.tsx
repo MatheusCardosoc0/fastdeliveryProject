@@ -7,6 +7,7 @@ import Modal from '../../components/modals/Modal'
 import ToasterProvider from '../../providers/ToasterProvider'
 import { Toaster } from 'react-hot-toast'
 import RegisterModal from '../../components/modals/RegisterModal'
+import LoginModal from '../../components/modals/LoginModal'
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
@@ -17,6 +18,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
     '>
       <Toaster />
       <RegisterModal />
+      <LoginModal />
       <Navbar />
       <div className='mt-20'>
         {children}
