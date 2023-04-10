@@ -19,11 +19,9 @@ export const authOptions: AuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
       profile(profile) {
         return {
-          id: profile.sub,
+          id: profile.id,
           name: profile.name,
-          user: profile.given_name,
           email: profile.email,
-          image: profile.picture,
         };
       },
     }),

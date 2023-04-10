@@ -9,14 +9,14 @@ import { Toaster } from 'react-hot-toast'
 import RegisterModal from '../../components/modals/RegisterModal'
 import LoginModal from '../../components/modals/LoginModal'
 import { User } from '@prisma/client'
-import { SafeUser } from '../../types'
+import { SafeUser } from '../../types/safeUser'
 
-interface LayoutProps{
+interface LayoutProps {
   children: ReactNode
   currentUser: SafeUser | null
 }
 
-const Layout = ({children, currentUser}: LayoutProps) => {
+const Layout = ({ children, currentUser }: LayoutProps) => {
   return (
     <div className='
       w-full
