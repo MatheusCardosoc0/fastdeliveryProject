@@ -8,6 +8,7 @@ import useLoginModal from '../../../hooks/useLoginModal'
 import { User } from '@prisma/client'
 import { signOut } from 'next-auth/react'
 import { SafeUser } from '../../../types/safeUser'
+import { limitText } from '../../../functions/limitText'
 
 interface AvatarProps {
   currentUser: SafeUser | null
@@ -26,13 +27,7 @@ const Avatar: React.FC<AvatarProps> = ({
     setIsVisibleOptions(prev => !prev)
   }, [])
 
-  function limitText(str: string, limite: number) {
-    if (str.length > limite) {
-      return str.slice(0, limite) + '...';
-    } else {
-      return str;
-    }
-  }
+
 
   return (
     <div className='relative'>
@@ -44,10 +39,9 @@ const Avatar: React.FC<AvatarProps> = ({
         '>
         <Image src={unknownUser}
           className='
-        w-[60px]
-        md:w-[80px]
-        cursor-pointer
-      '
+            w-[60px]
+            md:w-[80px]
+            cursor-pointer'
           alt='Imagem do usuário'
           onClick={ToggleOptions}
         />
@@ -74,12 +68,20 @@ const Avatar: React.FC<AvatarProps> = ({
             text-xl
             p-4
           '>
-          <li className='cursor cursor-pointer'>Conta</li>
-          <li className='border-y-2 py-4 cursor-pointer'>Carrinho</li>
-          <li className='cursor-pointer'>Favoritos</li>
+          <li className='cursor cursor-pointer'>
+            Conta
+          </li>
+          <li className='border-y-2 py-4 cursor-pointer'>
+            Pedidos
+          </li>
+          <li className='cursor-pointer'>
+            Favoritos
+          </li>
           <li className='cursor-pointer border-t-2 w-full text-center pt-4'
             onClick={() => signOut()}
-          >Sair</li>
+          >
+            Sair
+          </li>
         </ul>
       )}
 

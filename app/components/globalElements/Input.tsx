@@ -50,6 +50,7 @@ const Input: React.FC<InputProps> = ({
         disabled={disabled}
         required={required}
         type={type}
+        autoComplete='off'
         {...register(id , {required})}
         className={`
         px-2

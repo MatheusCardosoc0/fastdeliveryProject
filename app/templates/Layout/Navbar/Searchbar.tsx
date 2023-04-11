@@ -11,7 +11,7 @@ const Searchbar = () => {
     <div
       className='
         p-1
-        bg-gradient-to-tr from-[#f19d0b] to-[#fd137d]
+        bg-primary-graient
         rounded-xl
         w-full
         max-w-[50%]
