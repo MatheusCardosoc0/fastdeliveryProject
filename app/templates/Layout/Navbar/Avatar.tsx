@@ -69,7 +69,7 @@ const Avatar: React.FC<AvatarProps> = ({
             p-4
           '>
           <li className='cursor cursor-pointer'>
-            Conta
+            Contas
           </li>
           <li className='border-y-2 py-4 cursor-pointer'>
             Pedidos
