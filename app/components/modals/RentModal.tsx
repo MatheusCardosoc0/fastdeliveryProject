@@ -7,7 +7,9 @@ import Heading from "../containers/Heading";
 import { categories } from "../../constants/categories";
 import CategoryInput from "../inputs/CategoryInput";
 import { FieldValues, useForm } from "react-hook-form";
-import CountrySelected from "../inputs/CountrySelected";
+import CountrySelected, { CountrySelectValue } from "../inputs/CountrySelected";
+import dynamic from "next/dynamic";
+import Counter from "../inputs/Counter";
 
 enum STEPS {
   CATEGORY = 0,
@@ -50,7 +52,13 @@ export default function RentModal() {
 
   const category = watch('category')
 
-  const setCustoomValue = (id: string, value: string) => {
+  const location = watch('location')
+
+  const Map = useMemo(() => dynamic(() => import('../Map'), {
+    ssr: false
+  }), [location])
+
+  const setCustoomValue = (id: string, value: any) => {
     setValue(id, value, {
       shouldValidate: true,
       shouldDirty: true,
@@ -124,7 +132,29 @@ export default function RentModal() {
           title="Onde fica o seu lugar?"
           subtitle="Ajude os viajantes a encontrar você"
         />
-        <CountrySelected />
+        <CountrySelected  
+          value={location}
+          onChange={(value) => setCustoomValue('location', value)}
+        />
+        <Map
+          center={location?.latlng}
+        />
+      </div>
+    )
+  }
+
+  if(step === STEPS.INFO){
+    bodyContent = (
+      <div className="flex flex-col gap-6">
+        <Heading 
+          title="Compartilhe algumas informações sobre seu lugar"
+          subtitle="Quais comodidades você tem?"
+        />
+
+        <Counter
+          title="Número de convidados"
+          subtitle="qunatos convidados"
+        />
       </div>
     )
   }
