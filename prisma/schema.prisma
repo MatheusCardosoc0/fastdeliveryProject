@@ -11,78 +11,62 @@ datasource db {
 }
 
 model User {
-  id             String    @id @default(cuid())
-  name           String?
-  email          String?   @unique
-  hashedPassword String?
-  emailVerified  DateTime?
-  image          String?
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-  favoriteIds    String[]  
-  address        String?
-
+  id              String @id @default(cuid())
+  name            String?
+  email           String?   @unique
+  emailVerified   DateTime?
+  image           String?
+  hashedPassword  String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  favoriteIds     String[] 
   accounts Account[]
-  product  Product[]
-  order    Order[]
-
-  @@map("user")
+  listings Listing[]
+  reservations Reservation[]
 }
 
 model Account {
-  id                String  @id @default(cuid()) @map("_id") 
-  userId            String  
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String? 
-  acess_token       String? 
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String? 
-  session_state     String?
-
-  User User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+  id String @id @default(cuid()) @map("_id") 
+  userId             String   
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String? 
+  access_token       String? 
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String? 
+  session_state      String?
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   @@unique([provider, providerAccountId])
 }
 
-model Product {
-  id           String   @id @default(cuid()) @map("_id") 
-  title        String
-  description  String
-  image        String
-  createdAt    DateTime @default(now())
-  category     String
-  price        Int
-  igredients   String[]
-  userId       String   
-  categoriesId String?  
-
-  User       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  order      Order[]
-  Categories Categories? @relation(fields: [categoriesId], references: [id])
+model Listing {
+  id             String @id @default(cuid()) @map("_id") 
+  title String
+  description String
+  imageSrc String
+  createdAt DateTime @default(now())
+  category  String
+  roomCount Int
+  bathroomCount Int
+  guestCount Int
+  locationValue String
+  userId String 
+  price Int
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reservations Reservation[]
 }
 
-model Categories {
-  id         String    @id @default(cuid()) @map("_id") 
-  name       String
-  created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
-
-  products Product[]
-}
-
-model Order {
-  id         String   @id @default(cuid()) @map("_id") 
-  userId     String   
-  productId  String   
-  startDate  DateTime
-  endDate    DateTime
+model Reservation {
+  id String @id @default(cuid()) @map("_id") 
+  userId String 
+  listingId String   
+  startDate DateTime
+  endDate DateTime
   totalPrice Int
-  createdAt  DateTime @default(now())
-
-  User    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  Product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
 }

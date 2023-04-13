@@ -9,6 +9,7 @@ import { User } from '@prisma/client'
 import { signOut } from 'next-auth/react'
 import { SafeUser } from '../../../types/safeUser'
 import { limitText } from '../../../functions/limitText'
+import useRentModal from '../../../hooks/useRentModal'
 
 interface AvatarProps {
   currentUser: SafeUser | null
@@ -21,11 +22,21 @@ const Avatar: React.FC<AvatarProps> = ({
   const [isVisibleOptions, setIsVisibleOptions] = useState(false)
   const [authenticated, setAuthenticated] = useState(!!currentUser)
   const registerModal = useRegisterModal()
+  const rentModal = useRentModal()
   const loginModal = useLoginModal()
 
   const ToggleOptions = useCallback(() => {
     setIsVisibleOptions(prev => !prev)
   }, [])
+
+  const onRent = useCallback(() => {
+    if (!currentUser) {
+      return loginModal.onOpen()
+    }
+
+
+    rentModal.onOpen()
+  }, [currentUser, loginModal, rentModal])
 
 
 
@@ -69,13 +80,17 @@ const Avatar: React.FC<AvatarProps> = ({
             p-4
           '>
           <li className='cursor cursor-pointer'>
-            Contas
+            Conta
           </li>
           <li className='border-y-2 py-4 cursor-pointer'>
             Pedidos
           </li>
           <li className='cursor-pointer'>
             Favoritos
+          </li>
+          <li className='cursor-pointer'
+            onClick={ () => onRent()}>
+            Aluguel
           </li>
           <li className='cursor-pointer border-t-2 w-full text-center pt-4'
             onClick={() => signOut()}

@@ -10,6 +10,7 @@ import RegisterModal from '../../components/modals/RegisterModal'
 import LoginModal from '../../components/modals/LoginModal'
 import { User } from '@prisma/client'
 import { SafeUser } from '../../types/safeUser'
+import RentModal from '../../components/modals/RentModal'
 
 interface LayoutProps {
   children: ReactNode
@@ -26,6 +27,7 @@ const Layout = ({ children, currentUser }: LayoutProps) => {
       <Toaster />
       <RegisterModal />
       <LoginModal />
+      <RentModal />
       <Navbar currentUser={currentUser} />
       <div className='mt-28'>
         {children}

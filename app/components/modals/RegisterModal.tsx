@@ -8,9 +8,9 @@ import useRegisterModal from '../../hooks/useRegisterModal'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import Modal from './Modal'
 import Heading from '../containers/Heading'
-import Input from '../globalElements/Input'
+import Input from '../inputs/Input'
 import { toast } from 'react-hot-toast'
-import Button from '../globalElements/Button'
+import Button from '../Button'
 import { signIn } from 'next-auth/react'
 import useLoginModal from '../../hooks/useLoginModal'
 
@@ -34,6 +34,11 @@ const RegisterModal = () => {
     }
   })
 
+  const toggle = useCallback(() => {
+    loginModal.onOpen()
+    registerModal.onClose()
+  }, [loginModal, registerModal])
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true)
 
@@ -46,13 +51,9 @@ const RegisterModal = () => {
       })
       .finally(() => {
         setIsLoading(false)
+        toggle()
       })
   }
-
-  const toggle = useCallback(() => {
-    loginModal.onOpen()
-    registerModal.onClose()
-  },[loginModal, registerModal])
 
   const bodyContent = (
     <div className='flex flex-col gap-4'>

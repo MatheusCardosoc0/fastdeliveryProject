@@ -1,1 +1,1 @@
-export {default as Input} from './globalElements/Input'
+export { default as Input } from './inputs/Input'

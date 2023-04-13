@@ -8,17 +8,17 @@ import useLoginModal from '../../hooks/useLoginModal'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import Modal from './Modal'
 import Heading from '../containers/Heading'
-import Input from '../globalElements/Input'
+import Input from '../inputs/Input'
 import { toast } from 'react-hot-toast'
-import Button from '../globalElements/Button'
-import {signIn} from 'next-auth/react'
+import Button from '../Button'
+import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import useRegisterModal from '../../hooks/useRegisterModal'
 
 const LoginModal = () => {
 
   const LoginModal = useLoginModal()
-  const registerModal  = useRegisterModal()
+  const registerModal = useRegisterModal()
   const [isLoading, setIsLoading] = useState(false)
 
   const router = useRouter()
@@ -43,25 +43,25 @@ const LoginModal = () => {
       ...data,
       redirect: false
     })
-    .then((callback) => {
-      setIsLoading(false)
+      .then((callback) => {
+        setIsLoading(false)
 
-      if(callback?.ok){
-        toast.success("Login concluido")
-        window.location.reload()
-        LoginModal.onClose()
-      }
+        if (callback?.ok) {
+          toast.success("Login concluido")
+          window.location.reload()
+          LoginModal.onClose()
+        }
 
-      if(callback?.error){
-        toast.error(callback.error)
-      }
-    })
+        if (callback?.error) {
+          toast.error(callback.error)
+        }
+      })
   }
 
   const toggle = useCallback(() => {
     LoginModal.onClose()
     registerModal.onOpen()
-  },[LoginModal, registerModal])
+  }, [LoginModal, registerModal])
 
   const bodyContent = (
     <div className='flex flex-col gap-4'>
