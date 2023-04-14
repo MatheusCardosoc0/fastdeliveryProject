@@ -67,7 +67,7 @@ const Counter: React.FC<CounterProps> = ({
         </div>
 
         <div
-          onClick={onReduce}
+          onClick={onAdd}
           className="
             w-10
             h-10

@@ -10,6 +10,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import CountrySelected, { CountrySelectValue } from "../inputs/CountrySelected";
 import dynamic from "next/dynamic";
 import Counter from "../inputs/Counter";
+import ImageUpload from "../inputs/ImageUpload";
 
 enum STEPS {
   CATEGORY = 0,
@@ -54,6 +55,15 @@ export default function RentModal() {
 
   const location = watch('location')
 
+  const guestCount = watch("guestCount")
+
+  const roomCount = watch("roomCount")
+
+  const bathroomCount = watch("bathroomCount")
+
+  const imageSrc = watch("ImageSrc")
+
+
   const Map = useMemo(() => dynamic(() => import('../Map'), {
     ssr: false
   }), [location])
@@ -91,7 +101,7 @@ export default function RentModal() {
   }, [step])
 
 
-  
+
 
   let bodyContent = (
     <div className="flex flex-col gap-8">
@@ -125,14 +135,14 @@ export default function RentModal() {
     </div>
   )
 
-  if(step === STEPS.LOCATION){
+  if (step === STEPS.LOCATION) {
     bodyContent = (
       <div className="flex flex-col gap-8">
-        <Heading 
+        <Heading
           title="Onde fica o seu lugar?"
           subtitle="Ajude os viajantes a encontrar você"
         />
-        <CountrySelected  
+        <CountrySelected
           value={location}
           onChange={(value) => setCustoomValue('location', value)}
         />
@@ -143,17 +153,50 @@ export default function RentModal() {
     )
   }
 
-  if(step === STEPS.INFO){
+  if (step === STEPS.INFO) {
     bodyContent = (
       <div className="flex flex-col gap-6">
-        <Heading 
+        <Heading
           title="Compartilhe algumas informações sobre seu lugar"
           subtitle="Quais comodidades você tem?"
         />
 
         <Counter
           title="Número de convidados"
-          subtitle="qunatos convidados"
+          subtitle="qunatos convidados?"
+          value={guestCount}
+          onChange={(value) => setCustoomValue('guestCount', value)}
+        />
+        <hr />
+
+        <Counter
+          title="Número de quartos"
+          subtitle="qunatos quartos tem?"
+          value={roomCount}
+          onChange={(value) => setCustoomValue('roomCount', value)}
+        />
+        <hr />
+
+        <Counter
+          title="Número de banheiros"
+          subtitle="qunatos banheiros tem?"
+          value={bathroomCount}
+          onChange={(value) => setCustoomValue('bathroomCount', value)}
+        />
+      </div>
+    )
+  }
+
+  if(step === STEPS.IMAGES){
+    bodyContent = (
+      <div>
+        <Heading 
+          title="Adicione uma foto de seu lugar"
+          subtitle="Mostre aos convidados o seu lugar"
+        />
+        <ImageUpload
+          value={imageSrc}
+          onChange={(value) => setCustoomValue('ImageSrc', value)}
         />
       </div>
     )
