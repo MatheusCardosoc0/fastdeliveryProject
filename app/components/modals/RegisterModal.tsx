@@ -10,7 +10,7 @@ import Modal from './Modal'
 import Heading from '../containers/Heading'
 import Input from '../inputs/Input'
 import { toast } from 'react-hot-toast'
-import Button from '../Button'
+import Button from '../buttons/Button'
 import { signIn } from 'next-auth/react'
 import useLoginModal from '../../hooks/useLoginModal'
 

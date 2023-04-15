@@ -1,3 +1,4 @@
+import getCurrentUser from "./actions/getCurrentUser";
 import getListings from "./actions/getListings";
 import EmptyState from "./components/EmptyState";
 import ClientOnly from "./components/containers/ClientOnly";
@@ -7,6 +8,7 @@ import ListingCard from "./components/containers/ListingCard";
 export default async function Home() {
 
   const listings = await getListings()
+  const currentUser = await getCurrentUser()
 
   if(listings.length === 0) {
     return (
