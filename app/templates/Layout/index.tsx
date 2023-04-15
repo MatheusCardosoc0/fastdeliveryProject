@@ -29,7 +29,7 @@ const Layout = ({ children, currentUser }: LayoutProps) => {
       <LoginModal />
       <RentModal />
       <Navbar currentUser={currentUser} />
-      <div className='mt-28'>
+      <div className='pt-28 pb-28'>
         {children}
       </div>
       <Footer />
